@@ -6,12 +6,27 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-public class ExecutorsTest {
+public class SingleExecutorTest {
 
     public static void main(String ... blablabla) throws ExecutionException, InterruptedException {
+        runnableExample();
         callableExample();
         cancelExample();
     }
+
+    private static void runnableExample() throws InterruptedException, ExecutionException {
+        System.out.println("Runnable example");
+        ExecutorService executorService= Executors.newSingleThreadExecutor();
+        System.out.println("Before submit");
+        final Future<?> submit = executorService.submit(new LongOperation());
+        System.out.println("After submit+before get");
+        System.out.println("Is done? : " + submit.isDone());
+        //Runnable returns void so get() will always return null
+        System.out.println("After get: " + submit.get());
+        System.out.println("Is done? : "+submit.isDone());
+        System.out.println("---------------------------------");
+    }
+
 
     private static void callableExample() throws InterruptedException, ExecutionException {
         System.out.println("Callable example");
