@@ -1,3 +1,5 @@
+import operations.LongOperation;
+
 public class JoinTest
 {
 
@@ -18,18 +20,4 @@ public class JoinTest
         System.out.println("Joined after calculation is done");
 
 	}
-}
-
-class LongOperation implements Runnable
-{
-	@Override
-	public void run()
-	{
-		int counter = 0;
-		for (long a = 0; a < 1_000_000_000; a++)
-		{
-            counter+=a;
-		}
-	}
-
 }
